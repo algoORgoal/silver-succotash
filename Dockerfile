@@ -50,5 +50,7 @@ ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
 # RUN sudo sysctl --system
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+RUN source ~/.bashrc
 RUN nvm install --lts
+RUN source ~/.bashrc
 RUN npm install yarn
