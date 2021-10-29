@@ -44,3 +44,7 @@ ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
 # Install NodeJS
 # RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
 # RUN sudo apt-get install -y nodejs
+
+# Increase the amount of inotify watchers
+RUN sudo sh -c "echo fs.inotify.max_user_watches=524288 > /etc/sysctl.d/40-max-user-watches.conf"
+RUN sudo sysctl --system
