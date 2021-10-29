@@ -48,3 +48,7 @@ ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
 # Increase the amount of inotify watchers
 # RUN sudo sh -c "echo fs.inotify.max_user_watches=524288 > /etc/sysctl.d/40-max-user-watches.conf"
 # RUN sudo sysctl --system
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+RUN nvm install --lts
+RUN npm install yarn
