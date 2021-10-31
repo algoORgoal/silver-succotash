@@ -53,7 +53,9 @@ SHELL ["/bin/bash", "-c"]
 # RUN sudo sysctl --system
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-RUN source ~/.bashrc
+RUN export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 RUN nvm install --lts
 RUN source ~/.bashrc
 RUN npm install yarn
