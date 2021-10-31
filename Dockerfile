@@ -6,8 +6,9 @@ USER coder
 # Apply VS Code settings
 COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 
-# Use bash shell
+# Use bash shell globally
 ENV SHELL=/bin/bash
+SHELL ["$SHELL", "-c"]
 
 # Install unzip + rclone (support for remote filesystem)
 RUN sudo apt-get update && sudo apt-get install unzip -y
@@ -18,6 +19,9 @@ COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
 
 # Fix permissions for code-server
 RUN sudo chown -R coder:coder /home/coder/.local
+
+# Use nvm directory
+SHELL NVM_DIR="$HOME/.nvm"
 
 # You can add custom software and dependencies for your environment below
 # -----------
@@ -53,7 +57,7 @@ SHELL ["/bin/bash", "-c"]
 # RUN sudo sysctl --system
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-RUN export NVM_DIR="$HOME/.nvm"
+
 RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 RUN nvm install --lts
