@@ -8,7 +8,7 @@ COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 
 # Use bash shell globally
 ENV SHELL=/bin/bash
-SHELL ["$SHELL", "-c"]
+SHELL ["/bin/bash", "-c"]
 
 # Install unzip + rclone (support for remote filesystem)
 RUN sudo apt-get update && sudo apt-get install unzip -y
