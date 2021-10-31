@@ -6,9 +6,8 @@ USER coder
 # Apply VS Code settings
 COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 
-# Use bash shell globally
+# Use bash shell
 ENV SHELL=/bin/bash
-SHELL ["/bin/bash", "-c"]
 
 # Install unzip + rclone (support for remote filesystem)
 RUN sudo apt-get update && sudo apt-get install unzip -y
@@ -45,9 +44,6 @@ ENV PORT=8080
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
 ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
-
-# use bash shell for source command
-SHELL ["/bin/bash", "-c"] 
 
 # Install NodeJS
 # RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
