@@ -60,13 +60,8 @@ SHELL ["/bin/bash", "-c"]
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 # Install nvm with node and npm
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install --lts \
-    && nvm alias default --lts \
-    && nvm use --lts
-    && npm install yarn
-    
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && . $NVM_DIR/nvm.sh && nvm install --lts nvm alias default --lts && nvm use --lts && npm install yarn
 RUN nvm --version
 RUN node --version
 RUN npm --version
+RUN yarn --version
