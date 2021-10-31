@@ -21,7 +21,7 @@ COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
 RUN sudo chown -R coder:coder /home/coder/.local
 
 # Use nvm directory
-SHELL NVM_DIR="$HOME/.nvm"
+ENV NVM_DIR="$HOME/.nvm"
 
 # You can add custom software and dependencies for your environment below
 # -----------
